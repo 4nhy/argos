@@ -1,0 +1,215 @@
+@import "tailwindcss";
+
+/* ============================================================
+   ARGOS — reflective chrome on true black
+   Palette sampled from the silver-surfer reference: near-white
+   speculars, cool steel-blue mids, deep near-black reflections.
+   ============================================================ */
+:root {
+  --black: #000000;
+  --void: #000000;
+  --panel: #060708;
+  --panel-2: #0b0d11;
+
+  --chrome-hi: #ffffff;   /* specular */
+  --chrome: #d3ddea;      /* base chrome */
+  --steel: #8a97ab;       /* mid steel */
+  --steel-blue: #7f9bc0;  /* reflected sky */
+  --steel-dark: #38455a;
+  --ink: #0a1018;         /* deep reflection */
+
+  --ice: #cfe2f6;
+  --accent: #86a0c6;
+  --accent-hi: #b6cef0;
+
+  --text: #d9e0ea;
+  --text-dim: #838d9c;
+  --text-faint: #4e5766;
+
+  --line: rgba(180, 200, 228, 0.09);
+  --line-strong: rgba(180, 200, 228, 0.17);
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  background: #000000;
+  color: var(--text);
+  font-family: var(--font-sans), ui-sans-serif, system-ui, -apple-system, "Segoe UI", sans-serif;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+
+h1, h2, h3, .chrome-text, .chrome-sheen {
+  font-family: var(--font-display), ui-sans-serif, system-ui, sans-serif;
+}
+
+/* true black, with only a whisper of cool light high-center behind the chrome */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background:
+    radial-gradient(820px 460px at 50% -12%, rgba(110, 145, 190, 0.05), transparent 58%),
+    #000000;
+}
+
+::selection { background: rgba(150, 185, 230, 0.28); color: #fff; }
+
+::-webkit-scrollbar { width: 10px; }
+::-webkit-scrollbar-track { background: #000; }
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(180deg, #2b323e, #0d1014);
+  border-radius: 20px;
+  border: 2px solid #000;
+}
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, #3c4552, #171b22); }
+
+/* ---------- metallic type (high-contrast chrome bar) ---------- */
+.chrome-text {
+  background: linear-gradient(
+    177deg,
+    #ffffff 0%,
+    #e6eefa 12%,
+    #a9bdd6 33%,
+    #46536580 46%,
+    #3b4657 52%,
+    #b9cae0 68%,
+    #ffffff 82%,
+    #a7bdd8 100%
+  );
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  text-shadow: 0 1px 0 rgba(255, 255, 255, 0.02);
+}
+
+.chrome-sheen {
+  background: linear-gradient(
+    177deg,
+    #ffffff, #e2ecf8 12%, #aebfd8 30%, #3c4757 50%, #c3d2e6 70%, #ffffff 86%, #b0c6e0
+  );
+  background-size: 100% 260%;
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  -webkit-text-fill-color: transparent;
+  animation: sheen 8s ease-in-out infinite;
+}
+@keyframes sheen {
+  0%, 100% { background-position: 0% 8%; }
+  50% { background-position: 0% 100%; }
+}
+
+@keyframes livePulse {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.7); }
+}
+
+/* ---------- glass / metal panels (darker, tighter) ---------- */
+.glass {
+  background:
+    linear-gradient(180deg, rgba(200, 216, 240, 0.03), rgba(200, 216, 240, 0.006)),
+    var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  backdrop-filter: blur(8px);
+  box-shadow:
+    inset 0 1px 0 rgba(210, 225, 245, 0.05),
+    0 24px 50px -30px rgba(0, 0, 0, 1);
+  transition: border-color 0.3s ease, transform 0.3s ease;
+}
+.glass:hover { border-color: var(--line-strong); }
+
+.hairline { border-top: 1px solid var(--line); }
+
+.metal-edge { position: relative; }
+.metal-edge::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(190, 214, 240, 0.55), transparent);
+}
+
+/* rotating metallic border ring that follows the panel's exact rounded corners */
+@property --mf-angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+.metal-frame {
+  position: absolute;
+  inset: 0;
+  z-index: 2;
+  pointer-events: none;
+  border-radius: 16px;
+  padding: 1.5px;
+  background: conic-gradient(
+    from var(--mf-angle),
+    rgba(180, 200, 228, 0.12),
+    #eaf0f8 12%,
+    rgba(180, 200, 228, 0.12) 28%,
+    #9db6d6 46%,
+    rgba(180, 200, 228, 0.1) 62%,
+    #cfe0f2 80%,
+    rgba(180, 200, 228, 0.12) 100%
+  );
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
+  mask-composite: exclude;
+  animation: mf-spin 8s linear infinite;
+  filter: drop-shadow(0 0 6px rgba(150, 185, 230, 0.25));
+}
+@keyframes mf-spin {
+  to { --mf-angle: 360deg; }
+}
+@media (prefers-reduced-motion: reduce) {
+  .metal-frame { animation: none; }
+}
+
+/* stat numbers: SOLID bright metallic (not a background-clip gradient) so the
+   odometer's absolutely-positioned rolling digits are all visible */
+.stat-num {
+  color: #eaf1fb;
+  font-family: var(--font-display), ui-sans-serif, sans-serif;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.45), 0 0 14px rgba(150, 185, 230, 0.12);
+}
+
+.mono { font-family: var(--font-mono), ui-monospace, "SF Mono", Menlo, monospace; }
+
+.eyebrow {
+  font-family: var(--font-mono), ui-monospace, monospace;
+  font-size: 11px;
+  letter-spacing: 0.34em;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.7rem 1.3rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #eef3fa;
+  background: linear-gradient(180deg, #242b36, #0c1015);
+  border: 1px solid var(--line-strong);
+  box-shadow: inset 0 1px 0 rgba(220, 235, 250, 0.1);
+  transition: transform 0.2s ease, border-color 0.2s ease, box-shadow 0.2s ease;
+  cursor: pointer;
+}
+.btn:hover {
+  transform: translateY(-1px);
+  border-color: rgba(150, 185, 230, 0.4);
+  box-shadow: inset 0 1px 0 rgba(220, 235, 250, 0.16), 0 10px 34px -12px rgba(110, 150, 200, 0.5);
+}
+.btn-ghost { background: transparent; color: var(--text-dim); border-color: var(--line); }
+.btn-ghost:hover { color: var(--text); }

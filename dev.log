@@ -1,0 +1,53 @@
+
+> quicksilver@0.1.0 dev
+> next dev
+
+   ▲ Next.js 15.1.6
+   - Local:        http://localhost:3002
+   - Network:      http://172.29.5.81:3002
+
+ ✓ Starting...
+ ✓ Ready in 2.1s
+ ○ Compiling / ...
+ ✓ Compiled / in 6.7s (1309 modules)
+ GET / 200 in 7328ms
+ GET / 200 in 123ms
+ ✓ Compiled in 3.1s (1309 modules)
+ ✓ Compiled in 562ms (1309 modules)
+ ✓ Compiled in 656ms (1309 modules)
+ ✓ Compiled in 1366ms (1309 modules)
+ ✓ Compiled in 411ms (1309 modules)
+ ✓ Compiled in 849ms (1309 modules)
+ ✓ Compiled in 768ms (1309 modules)
+ ✓ Compiled in 601ms (1309 modules)
+ ✓ Compiled in 683ms (1309 modules)
+ ✓ Compiled in 209ms (650 modules)
+ ✓ Compiled in 553ms (1309 modules)
+ ✓ Compiled in 581ms (1309 modules)
+ ✓ Compiled in 235ms (650 modules)
+ ✓ Compiled in 196ms (650 modules)
+ ✓ Compiled in 170ms (650 modules)
+ ✓ Compiled in 12.1s (2440 modules)
+ ✓ Compiled in 840ms (2440 modules)
+ ✓ Compiled in 566ms (2440 modules)
+ ✓ Compiled in 688ms (2440 modules)
+ ✓ Compiled in 930ms (2440 modules)
+ ✓ Compiled in 884ms (2440 modules)
+ GET / 200 in 280ms
+ GET / 200 in 77ms
+ ✓ Compiled in 845ms (1309 modules)
+ ✓ Compiled in 517ms (1309 modules)
+ ✓ Compiled in 209ms (650 modules)
+ ✓ Compiled in 184ms (650 modules)
+ GET / 200 in 122ms
+ ✓ Compiled in 800ms (650 modules)
+ ✓ Compiled in 238ms (650 modules)
+ ✓ Compiled in 162ms (650 modules)
+ ✓ Compiled in 90ms (650 modules)
+ ✓ Compiled in 199ms (650 modules)
+ ✓ Compiled in 179ms (650 modules)
+ ✓ Compiled in 1637ms (1468 modules)
+ ✓ Compiled in 601ms (1492 modules)
+ ✓ Compiled in 936ms (1492 modules)
+ ✓ Compiled in 312ms (1492 modules)
+ GET / 200 in 464ms

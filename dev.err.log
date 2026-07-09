@@ -1,0 +1,4 @@
+ ⚠ Port 3000 is in use, trying 3001 instead.
+ ⚠ Port 3001 is in use, trying 3002 instead.
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\arnav\Work\quicksilver\.next\cache\webpack\client-development\0.pack.gz_' -> 'C:\Users\arnav\Work\quicksilver\.next\cache\webpack\client-development\0.pack.gz'
+<w> [webpack.cache.PackFileCacheStrategy] Caching failed for pack: Error: ENOENT: no such file or directory, rename 'C:\Users\arnav\Work\quicksilver\.next\cache\webpack\server-development\8.pack.gz_' -> 'C:\Users\arnav\Work\quicksilver\.next\cache\webpack\server-development\8.pack.gz'

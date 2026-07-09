@@ -1,0 +1,32 @@
+import type { Metadata } from "next";
+import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
+import "./globals.css";
+
+const display = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["500", "600", "700"],
+  variable: "--font-display",
+  display: "swap",
+});
+const sans = Inter({ subsets: ["latin"], variable: "--font-sans", display: "swap" });
+const mono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono", display: "swap" });
+
+export const metadata: Metadata = {
+  title: "Argos — Systematic Market-Neutral Trading",
+  description:
+    "A systematic, market-neutral multi-strategy book. Uncorrelated edges, combined. Built and validated by Arnav Lokhande.",
+  openGraph: {
+    title: "Argos — Systematic Market-Neutral Trading",
+    description:
+      "A systematic, market-neutral multi-strategy book. Uncorrelated edges, combined.",
+    type: "website",
+  },
+};
+
+export default function RootLayout({ children }: { children: React.ReactNode }) {
+  return (
+    <html lang="en" className={`${display.variable} ${sans.variable} ${mono.variable}`}>
+      <body>{children}</body>
+    </html>
+  );
+}
